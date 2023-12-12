@@ -17,11 +17,9 @@ class BaseLog(object):
             temp_list.append(self.__load_data(file))
         self.data = pd.concat(temp_list, axis=0)
 
-
-    def __file_check(func) :
+    def __file_check(func):
         """
         Checks if the file is valid
-
 
         :return:
             self: BaseLog(object)
@@ -30,9 +28,10 @@ class BaseLog(object):
         def file_check(self, file) -> func:
             if os.path.relpath(file):
                 if os.path.isfile(file):
-                    return  func(self, file)
+                    return func(self, file)
             raise  ValueError("File does not exist")
         return file_check
+
     @__file_check
     def __load_data(self, file: str) -> pd.DataFrame:
         """
@@ -41,9 +40,9 @@ class BaseLog(object):
         :param file: (str)
         :return: pandas.Dataframe
         """
-        return  pd.read_csv(file, skipinitialspace=True)
+        return pd.read_csv(file, skipinitialspace=True)
 
-    def __parse_data(self, data:pd.DataFrame)  -> pd.DataFrame:
+    def __parse_data(self, data:pd.DataFrame) -> pd.DataFrame:
         """
         parses the dataframe into a recquired format
 

@@ -1,9 +1,10 @@
 from dash import Dash, html, dash_table, dcc
-from vdl.log import RobotLogs
+from app.log import RobotLogs
 import plotly.express as px
 import plotly.graph_objects as go
 
 from .pages import BasePage
+
 class DashApp:
     def __init__(self, robot_log: RobotLogs):
         self.app = Dash()
