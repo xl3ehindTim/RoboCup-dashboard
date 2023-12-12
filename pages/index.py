@@ -1,4 +1,5 @@
 from dash import html, register_page, dcc
+import dash_mantine_components as dmc
 
 register_page(
     __name__,
@@ -28,7 +29,14 @@ def layout():
                 "Home Page"
             ]
         ),
-        graph_component,
+        dmc.Card(
+            withBorder=True,
+            shadow="sm",
+            radius="md",
+            children=[
+                graph_component,
+            ]
+        )
     ])
 
     return layout
