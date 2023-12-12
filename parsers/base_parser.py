@@ -12,7 +12,6 @@ class BaseParser(object):
     def __init__(self, load_files: list):
         self.data = self.__load_files(load_files)
 
-    @staticmethod
     def __file_check(func):
         """
         Checks if the file is valid
