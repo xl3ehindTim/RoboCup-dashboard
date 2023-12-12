@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-from .baseModel import BaseLog
+from .base_parser import BaseParser
 
-class RobotLogs(BaseLog):
+class RobotLogParser(BaseParser):
     def __init__(self, file):
         super().__init__(file)
         self.data = self.__parse_data(self.data)
