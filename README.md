@@ -1,1 +1,0 @@
-# RoboCup visualization dashboard

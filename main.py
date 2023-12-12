@@ -1,15 +1,12 @@
-import gradio as gr
-import msl
+import vdl
+import os
 
-msl_log = msl.MSLLogparser("test/match/20190704_083452.A.msl")
-msl_referee = msl.RefereeLog("test/match/20190704_083452.msl")
-merge = msl.MergeLogs(referee_log=msl_referee, team_logs=[msl_log])
+files = [f"2023-11-23 Test match/rosp-04/{file}"  for file in os.listdir("2023-11-23 Test match/rosp-04") if file[-3:] == "csv"]
+robot_logs = vdl.log.robotLogs.RobotLogs(files)
+#
+# print(robot_logs.data)
 
-def greet(name):
-    return "Hello " + name + "!"
+server = vdl.server.DashApp(robot_logs)
+server.run()
 
-
-demo = gr.Interface(fn=greet, inputs="text", outputs="text")
-
-if __name__ == "__main__":
-    demo.launch(show_api=False)
+# game = vdl.server.pages.GameOverview()
