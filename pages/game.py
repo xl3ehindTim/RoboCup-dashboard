@@ -160,8 +160,7 @@ def layout():
                 children=[
                     dmc.Col(
                         children=[
-                            dmc.Card(
-                                withBorder=True,
+                            dmc.Paper(
                                 shadow="sm",
                                 children=[
                                     dcc.Graph(id="field", figure=field),
@@ -174,22 +173,22 @@ def layout():
                     ),
                     dmc.Col(
                         children=[
-                            dmc.Card(
-                                withBorder=True,
+                            dmc.Paper(
                                 shadow="sm",
                                 children=[
                                     dcc.Graph(id="ball-graph"),
                                     html.Label("Scale time"),
-                                    dcc.Slider(
+                                    dmc.Slider(
+                                        id="slider",
                                         min=0,
                                         max=len(df) - 1,
                                         value=0,
-                                        id="slider",
-                                        marks=None,
-                                        tooltip={
-                                            "placement": "bottom",
-                                            "always_visible": True,
-                                        },
+                                        # marks=[
+                                        #     {"value": 20, "label": "20%"},
+                                        #     {"value": 50, "label": "50%"},
+                                        #     {"value": 80, "label": "80%"},
+                                        # ],
+                                        # mb=35,
                                     ),
                                 ],
                             )
