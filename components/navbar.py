@@ -12,7 +12,7 @@ def get_navbar():
             ),
             dmc.NavLink(
                 label="Game overview",
-                href="/game_overview",
+                href="/game",
                 icon=DashIconify(icon="bi:house-door-fill", height=16, color="#c2c7d0"),
             ),
         ],
