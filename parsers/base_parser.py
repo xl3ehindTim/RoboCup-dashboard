@@ -1,5 +1,7 @@
-import pandas as pd
 import os
+
+import pandas as pd
+
 
 class BaseParser(object):
     """
@@ -9,6 +11,7 @@ class BaseParser(object):
 
     :except ValueError: File does not exist
     """
+
     def __init__(self, load_files: list):
         self.data = self.__load_files(load_files)
 
@@ -20,10 +23,12 @@ class BaseParser(object):
             func: method - method to execute if the file is valid
             file: str - file to load into memory
         """
+
         def file_check(self, file):
             if os.path.relpath(file) and os.path.isfile(file):
                 return func(self, file)
             raise ValueError("File does not exist")
+
         return file_check
 
     def __load_files(self, files: list) -> pd.DataFrame:
