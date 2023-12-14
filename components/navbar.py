@@ -11,6 +11,9 @@ def get_navbar():
             dmc.Navbar(
                 p="md",
                 width={"base": 300},
+                top=0,
+                bottom=0,
+                left=0,
                 fixed=True,
                 children=[
                     dmc.Center(
