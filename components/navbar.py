@@ -19,7 +19,7 @@ def get_navbar():
                     dmc.Center(
                         p="md",
                         children=[
-                            dmc.Title(f"MSL dashboard", order=2),
+                            dmc.Title(f"Dashboard", order=2),
                         ],
                     ),
                     dmc.NavLink(
