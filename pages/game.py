@@ -5,9 +5,12 @@ import plotly.express as px
 import plotly.graph_objects as go
 from dash import Input, Output, callback, dcc, html, register_page
 
+from components.charts.game_field import game_field
+
 register_page(__name__, name="Game", top_nav=True, path="/game")
 
 df = pd.read_csv("data.csv")
+game = pd.read_csv("game.csv")
 
 
 @callback(Output("ball-graph", "figure"), Input("slider", "value"))
@@ -51,14 +54,15 @@ def ball_location(index):
     # Set layout with axis range
     figure.update_layout(
         title="Ball Position",
-        xaxis=dict(title="X-coordinate", range=[-x_max, x_max]),
-        yaxis=dict(title="Y-coordinate", range=[-y_max, y_max]),
+        xaxis=dict(title="", range=[-x_max, x_max], fixedrange=True),
+        yaxis=dict(title="", range=[-y_max, y_max], fixedrange=True),
     )
 
     return figure
 
 
 def layout():
+    field = game_field(game)
     layout = html.Div(
         [
             html.H1("Game overview"),
@@ -66,12 +70,10 @@ def layout():
                 children=[
                     dmc.Col(
                         children=[
-                            dmc.Card(
-                                withBorder=True,
+                            dmc.Paper(
                                 shadow="sm",
                                 children=[
-                                    html.H2("Bots visualization"),
-                                    # Visualise bots on the field with their absolute position, movement, location, and angle. Also add an arrow for their direction
+                                    dcc.Graph(id="field", figure=field),
                                 ],
                             )
                         ],
@@ -79,22 +81,16 @@ def layout():
                     ),
                     dmc.Col(
                         children=[
-                            dmc.Card(
-                                withBorder=True,
+                            dmc.Paper(
                                 shadow="sm",
                                 children=[
                                     dcc.Graph(id="ball-graph"),
                                     html.Label("Scale time"),
-                                    dcc.Slider(
+                                    dmc.Slider(
+                                        id="slider",
                                         min=0,
                                         max=len(df) - 1,
                                         value=0,
-                                        id="slider",
-                                        marks=None,
-                                        tooltip={
-                                            "placement": "bottom",
-                                            "always_visible": True,
-                                        },
                                     ),
                                 ],
                             )
