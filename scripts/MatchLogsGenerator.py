@@ -1,7 +1,7 @@
 from faker import Faker
 from datetime import time
 from dataclasses import dataclass
-import playerLogGenerator
+import PlayerLogGenerator
 
 # Initialize Faker
 fake = Faker()
